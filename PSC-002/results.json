@@ -1,0 +1,26 @@
+{
+  "paired_scenarios": 24,
+  "policy_runs": 48,
+  "unconditional_overwrite": 24,
+  "conditional_conflict": 24,
+  "resolved": 24,
+  "example": {
+    "order": [
+      "A",
+      "B"
+    ],
+    "unconditional": [
+      "original",
+      "B"
+    ],
+    "conditional": [
+      "original",
+      "A"
+    ],
+    "after_explicit_retry": [
+      "original",
+      "A",
+      "B"
+    ]
+  }
+}

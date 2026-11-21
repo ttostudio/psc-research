@@ -1,0 +1,48 @@
+{
+  "id": "PSC-001",
+  "level": "L2",
+  "scope": "SEC-004 toy model",
+  "interpreter": "3.12.14",
+  "revision_domain": [
+    0,
+    1,
+    2
+  ],
+  "event_values": 12,
+  "state_event_pairs": 108,
+  "state_changes": 10,
+  "unchanged_pairs": 98,
+  "reachable_history_augmented_states": 9,
+  "reachable_history_augmented_edges_checked": 108,
+  "scenarios": {
+    "no_review": [
+      "draft",
+      0
+    ],
+    "review_and_finalize": [
+      "final",
+      0
+    ],
+    "changed_revision_requires_review": [
+      "draft",
+      1
+    ],
+    "old_revision_does_not_seal_current_review": [
+      "reviewed",
+      1
+    ],
+    "latest_revision_can_seal": [
+      "final",
+      1
+    ],
+    "final_state_cannot_be_edited": [
+      "final",
+      0
+    ],
+    "revision_cap": [
+      "draft",
+      2
+    ]
+  },
+  "status": "PASS"
+}

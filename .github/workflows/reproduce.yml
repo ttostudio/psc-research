@@ -1,0 +1,29 @@
+name: 研究結果の再現
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  reproduce:
+    name: PSC-001・002 の検証
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: 検証済みデータと実行結果を照合
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd PSC-001
+           sha256sum -c SHA256SUMS
+           python3 -B check.py > /tmp/psc-001.json
+           python3 -c 'import json,sys; a,b=(json.load(open(p)) for p in sys.argv[1:]); a.pop("interpreter"); b.pop("interpreter"); sys.exit("PSC-001: result mismatch" if a != b else 0)' results.json /tmp/psc-001.json)
+          (cd PSC-002
+           sha256sum -c SHA256SUMS
+           python3 -B check.py | diff -u results.json -)
